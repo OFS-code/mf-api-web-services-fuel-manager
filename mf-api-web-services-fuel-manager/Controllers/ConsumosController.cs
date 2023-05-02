@@ -1,10 +1,13 @@
 ﻿using mf_api_web_services_fuel_manager.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace mf_api_web_services_fuel_manager.Controllers
 {
+
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ConsumosController : ControllerBase
@@ -75,6 +78,8 @@ namespace mf_api_web_services_fuel_manager.Controllers
             return NoContent();
 
         }
+
+       
         private void GerarLinks(Consumo model)
         {
             model.Links.Add(new LinkDto(model.Id, Url.ActionLink(), rel: "self", metodo: "GET"));
